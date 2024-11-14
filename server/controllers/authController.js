@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import { comparePassword, hassPassword } from "../utils/passwordUtil.js";
 import { createToken, encryptToken } from "../utils/tokenUtil.js";
 
+// for user register purpose 
 export const userRegister = async (req, res) => {
     try {
         const { userName, mobileNo, email, password } = req.body;
@@ -33,6 +34,7 @@ export const userRegister = async (req, res) => {
     }
 }
 
+// for user login purpose 
 export const userLogin = async (req,res)=>{
     try {
         // to get the user email from database 
@@ -56,6 +58,7 @@ export const userLogin = async (req,res)=>{
     }
 }
 
+// for admin login purpose 
 export const adminLogin = async (req,res)=>{
     try{
         const user = await userModel.findOne({ email: req.body.email });

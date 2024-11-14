@@ -19,8 +19,12 @@ app.use(morgan('dev'));
 
 // to import the routes 
 import authRouter from "./routes/authRoute.js";
+import resetRouter from "./routes/resetPasswordRoute.js"
+import { sendEmail } from "./controllers/emailController.js";
 
 app.use('/api/v1/auth', authRouter);
+app.use("/api/v1/redirect", resetRouter);
+app.use("/api/v1/send-email", sendEmail);
 
 // Routes
 app.get('/', (req, res) => {

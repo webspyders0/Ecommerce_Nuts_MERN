@@ -1,4 +1,4 @@
-import { verifyJWT } from "../utils/tokenUtil";
+import { decryptToken, verifyToken } from "../utils/tokenUtil.js";
 
 export const authenticateUser = async (req, res, next) => {
     // to decrypt the token from the cookie 
@@ -6,13 +6,13 @@ export const authenticateUser = async (req, res, next) => {
 
     //TODO: remove console.log
     console.log("Cookies:", req.cookies);
-    console.log("Token:", token); 
+    console.log("Token:", token);
 
     if (!token) {
-        return res.status(401).json({ msg: "Oops something went wrong" });
+        return res.status(401).json({ msg: "Token not found " });
     }
     try {
-        const { userId, role } = verifyJWT(token);
+        const { userId, role } = verifyToken(token);
         req.user = { userId, role };
         console.log(req.user);
         next();

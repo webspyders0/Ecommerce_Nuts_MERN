@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ChatWidget from '../../components/ChatWidget';
+import backgroundImage from '../../assets/images/nutso3.png'; 
 
 const AboutPage = () => {
     return (
@@ -16,6 +17,16 @@ const AboutPage = () => {
             <div className="bg-cream-100 min-h-screen">
                 {/* Header */}
                 <Navbar />
+                    <main className='pt-20'
+                        style={{
+                            minHeight: '100vh',
+                            backgroundImage: `url(${backgroundImage})`,
+                            backgroundSize: 'auto',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'repeat',
+
+                        }}
+                    >
 
                 {/* Hero Section */}
                 <section className="relative h-64 md:h-96 bg-cover bg-center" style={{ backgroundImage: 'url("/placeholder.svg?height=400&width=1200")' }}>
@@ -129,6 +140,7 @@ const AboutPage = () => {
                 {/* <div className="fixed bottom-0 left-0 right-0 bg-amber-500 text-white py-2 text-center">
                     <p>Only INR620 away from free shipping</p>
                 </div> */}
+            </main>
             </div>
             </div>
         </>

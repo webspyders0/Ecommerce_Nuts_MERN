@@ -1,182 +1,199 @@
-import React, { useState, useEffect, useRef } from 'react';
-import IconButtons from './IconButtons';
-import { Helmet } from 'react-helmet';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Search, User, ShoppingCart, Heart, ChevronDown, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import Logo from '../assets/images/nutty.png';
+import backgroundImage from '../assets/images/nutso3.png';
 
-const Navbar = () => {
+export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(window.scrollY);
-    const [navbarHeight, setNavbarHeight] = useState(0);
-    const navbarRef = useRef(null);
-    const navigate = useNavigate();
-    const location = useLocation(); // Use location to get current path
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-            if (navbarRef.current) {
-                setNavbarHeight(navbarRef.current.offsetHeight);
-            }
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const dropdownRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-
-            if (currentScrollY > lastScrollY) {
-                setIsNavbarVisible(false);
-            } else {
-                setIsNavbarVisible(true);
-            }
-
+            setIsNavbarVisible(currentScrollY < lastScrollY || currentScrollY < 50);
             setLastScrollY(currentScrollY);
         };
 
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollY]);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setActiveDropdown(null);
+            }
+        };
 
-    const navItems = [
-        { name: 'HOME', path: '/' },
-        { name: 'ABOUT US', path: '/about' },
-        { name: 'PRODUCTS', path: '/products' },
-        { name: 'BEST DEALS', path: '/best-deals' },
-        { name: 'GIFTINGS', path: '/giftings' },
-        { name: 'CONTACT US', path: '/contact' }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const isActive = (path) => location.pathname === path;
+
+    const navLinkClass = (path) => `text-black hover:bg-[#FDAA58] hover:text-white px-4 py-1 rounded transition-colors duration-200 ${isActive(path) ? 'bg-[#FDAA58] text-white' : ''}`;
+
+    const productCategories = [
+        { title: 'ALL PRODUCTS', href: '/products' },
+        { title: 'NUTTY DELICACIES', href: '/products/delicacies' },
+        { title: 'DATES', href: '/products/dates' },
+        { title: 'NUTS', href: '/products/nuts' },
+        { title: 'DRY FRUITS', href: '/products/dry-fruits' },
+        { title: 'SEEDS', href: '/products/seeds' },
+        { title: 'DRINKS', href: '/products/drinks' },
+        { title: 'NATURAL SPICE POWDERS', href: '/products/spices' },
+        { title: 'STUFFED DATES', href: '/products/stuffed-dates' },
+        { title: 'EXCLUSIVE CONFECTIONERY', href: '/products/confectionery' },
+        { title: 'SNACKS', href: '/products/snacks' },
+        { title: 'IMPORTED', href: '/products/imported' },
     ];
 
-    const handleNavItemClick = (path) => {
-        navigate(path);
-        if (isMobile) {
-            setIsMenuOpen(false);
-        }
-    };
-
     return (
-        <>
-            <Helmet>
-                <title>Nutty | Fresh DryFruits & Nuts</title>
-            </Helmet>
-
-            <header
-                ref={navbarRef}
+        <header className={`fixed w-full z-50 transition-transform duration-300 ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <div
+                className="relative shadow-sm"
                 style={{
-                    backgroundColor: 'white',
-                    padding: '10px 20px',
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                    transition: 'transform 0.3s ease',
-                    transform: isNavbarVisible ? 'translateY(0)' : `translateY(-${navbarHeight}px)`,
-                    position: 'fixed',
-                    width: '100%',
-                    top: 0,
-                    zIndex: 1000,
+                    backgroundImage: `linear-gradient(rgba(253, 248, 231, 0.9), rgba(253, 248, 231, 0.9)), url(${backgroundImage})`,
+                    backgroundBlendMode: 'overlay',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
                 }}
             >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="#D4AF37">
-                            <path d="M20 1L1 10L20 19L39 10L20 1ZM1 30L20 39L39 30V10L20 19L1 10V30Z" />
-                        </svg>
-                        <span style={{ marginLeft: '10px', fontSize: '24px', fontWeight: 'bold' }}>NUTTY.</span>
-                    </div>
-                    {!isMobile && (
-                        <nav>
-                            <ul style={{ display: 'flex', listStyle: 'none', gap: '20px' }}>
-                                {navItems.map((item) => (
-                                    <li key={item.name}>
-                                        <button
-                                            onClick={() => handleNavItemClick(item.path)}
-                                            style={{
-                                                color: '#8B4513',
-                                                background: 'none',
-                                                border: 'none',
-                                                cursor: 'pointer',
-                                                textDecoration: 'none',
-                                                borderBottom: location.pathname === item.path ? '2px solid #D4AF37' : 'none' // Add border if active
-                                            }}>
-                                            {item.name}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center justify-between h-20 p-0 lg:px-40">
+                        {/* Logo */}
+                        <Link to="/" className="flex items-center space-x-2">
+                            <img src={Logo} alt="NUTTY Logo" className="h-8 w-8" />
+                            <span className="text-2xl font-bold text-amber-800">NUTTY.</span>
+                        </Link>
+
+                        {/* Desktop Navigation */}
+                        <nav className="hidden lg:flex items-center space-x-2">
+                            <Link to="/" className={navLinkClass('/')}>HOME</Link>
+                            <Link to="/about" className={navLinkClass('/about')}>ABOUT US</Link>
+
+                            {/* Products Dropdown */}
+                            <div className="relative" ref={dropdownRef}>
+                                <button
+                                    onClick={() => setActiveDropdown(activeDropdown === 'products' ? null : 'products')}
+                                    className={navLinkClass('/products')}
+                                >
+                                    PRODUCTS
+                                    <ChevronDown className="ml-1 h-4 w-4 inline" />
+                                </button>
+
+                                {activeDropdown === 'products' && (
+                                    <div className="absolute top-full left-0 w-[600px] bg-white/95 backdrop-blur-sm shadow-lg rounded-lg mt-2 p-6">
+                                        <div className="grid grid-cols-2 gap-x-8">
+                                            <div className="space-y-4">
+                                                {productCategories.map((category) => (
+                                                    <Link
+                                                        key={category.title}
+                                                        to={category.href}
+                                                        className="block text-black hover:text-amber-600 transition-colors duration-200"
+                                                    >
+                                                        {category.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                            <div className="relative">
+                                                <img
+                                                    src="/placeholder.svg?height=300&width=300"
+                                                    alt="Featured Products"
+                                                    className="rounded-lg object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            <Link to="/deals" className={navLinkClass('/deals')}>BEST DEALS</Link>
+
+                            {/* Giftings Dropdown */}
+                            <div className="relative">
+                                <button
+                                    onClick={() => setActiveDropdown(activeDropdown === 'giftings' ? null : 'giftings')}
+                                    className={navLinkClass('/giftings')}
+                                >
+                                    GIFTINGS
+                                    <ChevronDown className="ml-1 h-4 w-4 inline" />
+                                </button>
+                            </div>
+
+                            <Link to="/contact-us" className={navLinkClass('/contact-us')}>CONTACT US</Link>
                         </nav>
-                    )}
-                    <div style={{ display: 'flex', gap: '15px' }}>
-                        <IconButtons />
-                        {isMobile && (
-                            <button onClick={toggleMenu} style={{ background: 'none', border: 'none', cursor: 'pointer' }} aria-label="Toggle menu">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B4513" strokeWidth="2">
-                                    <path d="M3 12h18M3 6h18M3 18h18" />
-                                </svg>
+
+                        {/* Icons */}
+                        <div className="flex items-center space-x-1">
+
+                            <button className="text-black p-2 rounded">
+                                <Link to="/search">
+                                    <Search className="h-6 w-6" />
+                                </Link>
                             </button>
-                        )}
-                    </div>
-                </div>
-            </header>
 
-            <div style={{ marginTop: `${navbarHeight}px` }}></div>
+                            <button className="text-black p-2 rounded">
+                                <Link to="/login">
+                                    <User className="h-6 w-6" />
+                                </Link>
+                            </button>
 
-            {isMobile && isMenuOpen && (
-                <nav style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'white',
-                    zIndex: 1000,
-                    overflowY: 'auto',
-                    padding: '20px'
-                }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="#D4AF37">
-                            <path d="M20 1L1 10L20 19L39 10L20 1ZM1 30L20 39L39 30V10L20 19L1 10V30Z" />
-                        </svg>
-                        <button onClick={toggleMenu} style={{ background: 'none', border: 'none', cursor: 'pointer' }} aria-label="Close menu">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B4513" strokeWidth="2">
-                                <path d="M18 6L6 18M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                    {navItems.map((item) => (
-                        <div key={item.name} style={{ marginBottom: '15px' }}>
+                            <button className="text-black p-2 rounded relative">
+                                <Link to="/cart">
+                                    <ShoppingCart className="h-6 w-6" />
+                                    <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                        0
+                                    </span>
+                                </Link>
+                            </button>
+
+                            <button className="text-black p-2 rounded relative">
+                                <Link to="/wishlist">
+                                    <Heart className="h-6 w-6" />
+                                    <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                        0
+                                    </span>
+                                </Link>
+                            </button>
+
+                            {/* Mobile Menu Button */}
                             <button
-                                onClick={() => handleNavItemClick(item.path)}
-                                style={{
-                                    color: '#8B4513',
-                                    background: 'none',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    fontSize: '18px',
-                                    borderBottom: location.pathname === item.path ? '2px solid #D4AF37' : 'none' // Active style for mobile menu
-                                }}>
-                                {item.name}
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="lg:hidden text-black p-2 rounded"
+                            >
+                                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                             </button>
                         </div>
-                    ))}
-                </nav>
-            )}
-        </>
+                    </div>
+                </div>
+
+                {/* Mobile Menu */}
+                {isMenuOpen && (
+                    <div className="lg:hidden">
+                        <div className="flex flex-col px-4 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm">
+                            <Link to="/" className={navLinkClass('/')}>HOME</Link>
+                            <Link to="/about" className={navLinkClass('/about')}>ABOUT US</Link>
+                            <Link to="/products" className={navLinkClass('/products')}>PRODUCTS</Link>
+                            <Link to="/deals" className={navLinkClass('/deals')}>BEST DEALS</Link>
+                            <Link to="/giftings" className={navLinkClass('/giftings')}>GIFTINGS</Link>
+                            <Link to="/contact-us" className={navLinkClass('/contact-us')}>CONTACT US</Link>
+                        </div>
+                    </div>
+                )}
+
+            </div>
+
+            {/* Free Shipping Banner */}
+            <div className="bg-amber-500 text-white text-center py-2 text-sm">
+                Use Code "FAIZUS" Free shipping for orders over INR1500
+            </div>
+        </header>
     );
-};
-
-export default Navbar;
-
-
+}

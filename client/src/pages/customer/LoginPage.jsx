@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import backgroundImage from '../../assets/images/nuts.webp'; // Import the image
+import backgroundImage from '../../assets/images/nuts.webp'; 
 
 export default function LoginPage() {
     return (

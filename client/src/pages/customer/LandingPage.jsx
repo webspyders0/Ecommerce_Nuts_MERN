@@ -4,6 +4,7 @@ import LandingAbout from '../../components/LandingAbout';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ChatWidget from '../../components/ChatWidget';
+import backgroundImage from '../../assets/images/nutso3.png'; 
 
 const HomePage = () => {
 
@@ -26,7 +27,16 @@ const HomePage = () => {
                 <Navbar />
 
                 {/* Main Content */}
-                <main>
+                <main className='pt-20'
+                    style={{
+                        minHeight: '100vh',
+                        backgroundImage: `url(${backgroundImage})`,
+                        backgroundSize: 'auto',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'repeat',
+                        
+                    }}
+                    >
                     {/* Hero Section */}
                     <section
                         //  className='bg-amber-800'
@@ -132,13 +142,17 @@ const HomePage = () => {
 
                 {/* Fixed elements */}
                 <div style={{ position: 'fixed', bottom: '20px', right: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                   <ChatWidget/>
+                    <ChatWidget />
                 </div>
 
                 {/* Free shipping banner */}
-                {/* <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: '#D4AF37', color: 'white', padding: '10px', textAlign: 'center' }}>
-                    <p>Only INR620 away from free shipping</p>
+                {/* <div className="fixed bottom-0 left-0 right-0 bg-amber-500 text-white py-2 text-center"
+                    style={{
+                        zIndex: '1', // Lower z-index for the banner
+                    }}>
+                    <p>Discover the secret to ultimate freshness – only at Nutty.</p>
                 </div> */}
+
             </div>
         </>
     );

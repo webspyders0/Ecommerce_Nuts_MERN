@@ -8,11 +8,12 @@ const IconButtons = () => {
         if (icon === 'user') navigate('/login');
         if (icon === 'cart') navigate('/cart');
         if (icon === 'search') navigate('/search');
+        if (icon === 'wishlist') navigate('/wishlist'); // Wishlist navigation
     };
 
     return (
         <div style={{ display: 'flex', gap: '15px' }}>
-            {['search', 'user', 'cart'].map((icon) => (
+            {['search', 'user', 'cart', 'wishlist'].map((icon) => (
                 <button
                     key={icon}
                     onClick={() => handleNavigation(icon)}
@@ -34,6 +35,9 @@ const IconButtons = () => {
                         )}
                         {icon === 'cart' && (
                             <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" />
+                        )}
+                        {icon === 'wishlist' && (
+                            <path d="M12 21C12 21 4 13.5 4 8.5C4 5.46243 6.46243 3 9.5 3C11.1569 3 12.7272 3.87972 13.5 5.2C14.2728 3.87972 15.8431 3 17.5 3C20.5376 3 23 5.46243 23 8.5C23 13.5 15 21 15 21H12Z" />
                         )}
                     </svg>
                 </button>

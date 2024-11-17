@@ -7,6 +7,10 @@ import RegisterPage from './pages/customer/RegisterPage';
 // import { TitleProvider } from './components/TitleContent';
 import HomePage from './pages/customer/LandingPage';
 import AboutPage from './pages/customer/AboutPage';
+import ContactPage from './pages/customer/ContactPage';
+import { NetworkStatusProvider } from './pages/network/NetworkStatusProvider';
+import NetworkAwareComponent from './pages/network/NetworkAwareComponent';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 // Define the router using createBrowserRouter
 const router = createBrowserRouter([
@@ -29,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <AboutPage />,
+      },
+      {
+        path: 'contact-us',
+        element: <ContactPage />,
+      },
+      {
+        path: 'admin',
+        element: <AdminDashboard />,
       },
     ],
   },
@@ -67,9 +79,11 @@ const App = () => {
   }, []);
 
   return (
-    // <TitleProvider>
-      <RouterProvider router={router} />
-    // </TitleProvider>
+    <NetworkStatusProvider>
+      <NetworkAwareComponent>
+        <RouterProvider router={router} />
+      </NetworkAwareComponent>
+    </NetworkStatusProvider>
   )
 };
 

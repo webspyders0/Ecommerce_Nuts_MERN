@@ -1,11 +1,78 @@
 /* src/index.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+body {
+}
+
+.nav-button {
+  color: black;
+  background-color: transparent;
+  font-weight: 500;
+  border: none;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, font-weight 0.3s;
+}
+
+.nav-button.active {
+  color: white;
+  background-color: #e0b85e; /* Active state background */
+  font-weight: 600;
+}
+
+.nav-button:hover {
+  background-color: #DEB860; /* Hover state background */
+  color: white; /* Hover state text color */
+  font-weight: 600; /* Hover state font weight */
+}
+
+
+:root {
+    --modal-margin-top: 0%;
+}
+
+@media (max-width: 640px) {
+
+    /* For small screens (e.g., mobile devices) */
+    :root {
+        --modal-margin-top: -100%;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: linear-gradient(to bottom, #FFA559, #A84448);
+    transition: all 0.5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: red,
+}
+
+::-webkit-scrollbar-track {
+    background: #f9f9f9;
 }

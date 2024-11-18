@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ChatWidget from '../../components/ChatWidget';
 import backgroundImage from '../../assets/images/nutso3.png'; 
+import bannerImg from '../../assets/images/bannerImg.webp'; 
 
 const HomePage = () => {
 
@@ -46,19 +47,21 @@ const HomePage = () => {
                             padding: '60px 0'
                         }}>
                         <div style={styles.container}>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <div style={{ flex: 1 }}>
-                                    <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>PREMIUM CUSTOMISED GIFT HAMPERS</h1>
-                                    <p style={{ fontSize: '18px', marginBottom: '30px' }}>Discover our exquisite collection of dry fruits and nuts</p>
-                                    <button style={{ ...styles.button, backgroundColor: 'white', color: '#8B4513' }}>Shop Now</button>
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                                {/* Text Content */}
+                                <div className="flex-1 text-center md:text-left">
+                                    <h1 className="text-4xl md:text-5xl mb-4">PREMIUM CUSTOMISED NUTS & SEEDS</h1>
+                                    <p className="text-lg mb-6">Discover our exquisite collection of dry fruits and nuts</p>
+                                    <button className="bg-white text-amber-800 px-6 py-2 rounded-md font-semibold">Shop Now</button>
                                 </div>
-                                <div style={{ flex: 1 }}>
-                                    <div style={{ backgroundColor: '#E0E0E0', width: '100%', paddingTop: '75%', position: 'relative' }}>
-                                        <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>Gift Hamper Image</span>
-                                    </div>
+                                {/* Banner Image */}
+                                <div className="flex-1">
+                                    <img src={bannerImg} alt="Gift Hamper" className="rounded-md w-full" />
                                 </div>
                             </div>
+
                         </div>
+
                     </section>
 
                     {/* NUTTY Delicacies Section */}

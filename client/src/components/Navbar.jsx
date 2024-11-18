@@ -3,6 +3,7 @@ import { Search, User, ShoppingCart, Heart, ChevronDown, Menu, X } from 'lucide-
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../assets/images/nutty.png';
 import backgroundImage from '../assets/images/nutso3.png';
+import products from '../assets/images/products.png';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,16 +41,12 @@ export default function Navbar() {
 
     const productCategories = [
         { title: 'ALL PRODUCTS', href: '/products' },
-        { title: 'NUTTY DELICACIES', href: '/products/delicacies' },
         { title: 'DATES', href: '/products/dates' },
         { title: 'NUTS', href: '/products/nuts' },
         { title: 'DRY FRUITS', href: '/products/dry-fruits' },
         { title: 'SEEDS', href: '/products/seeds' },
-        { title: 'DRINKS', href: '/products/drinks' },
         { title: 'NATURAL SPICE POWDERS', href: '/products/spices' },
         { title: 'STUFFED DATES', href: '/products/stuffed-dates' },
-        { title: 'EXCLUSIVE CONFECTIONERY', href: '/products/confectionery' },
-        { title: 'SNACKS', href: '/products/snacks' },
         { title: 'IMPORTED', href: '/products/imported' },
     ];
 
@@ -89,7 +86,7 @@ export default function Navbar() {
                                 </button>
 
                                 {activeDropdown === 'products' && (
-                                    <div className="absolute top-full left-0 w-[600px] bg-white/95 backdrop-blur-sm shadow-lg rounded-lg mt-2 p-6">
+                                    <div className="absolute top-full left-0 w-[600px] bg-[#FDF8E7]/95 backdrop-blur-sm shadow-lg rounded-lg mt-2 p-6">
                                         <div className="grid grid-cols-2 gap-x-8">
                                             <div className="space-y-4">
                                                 {productCategories.map((category) => (
@@ -104,7 +101,7 @@ export default function Navbar() {
                                             </div>
                                             <div className="relative">
                                                 <img
-                                                    src="/placeholder.svg?height=300&width=300"
+                                                    src={products}
                                                     alt="Featured Products"
                                                     className="rounded-lg object-cover"
                                                 />

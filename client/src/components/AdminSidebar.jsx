@@ -6,12 +6,12 @@ export default function AdminSidebar({ darkMode, toggleDarkMode, collapsed, setC
     const location = useLocation()
 
     const navItems = [
-        { icon: LayoutDashboard, text: 'Dashboard', path: '/' },
-        { icon: ShoppingCart, text: 'Orders', path: '/orders' },
-        { icon: Package, text: 'Products', path: '/products' },
+        { icon: LayoutDashboard, text: 'Dashboard', path: '/admin' },
+        { icon: ShoppingCart, text: 'Orders', path: '/admin/orders' },
+        { icon: Package, text: 'Products', path: '/admin/products' },
         { icon: Gift, text: 'Gift Hampers', path: '/gift-hampers' },
         { icon: Store, text: 'Stores', path: '/stores' },
-        { icon: Users, text: 'Customers', path: '/customers' },
+        { icon: Users, text: 'Customers', path: '/admin/customers' },
     ]
 
     const isActive = (path) => location.pathname === path
@@ -56,7 +56,7 @@ export default function AdminSidebar({ darkMode, toggleDarkMode, collapsed, setC
                     </div>
                     <div className="mt-4 space-y-1">
                         <Link
-                            to="/settings"
+                            to="/admin/settings"
                             className={`flex items-center gap-2 rounded-lg px-3 py-2 ${darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-600 hover:bg-orange-50 hover:text-orange-500'
                                 }`}
                         >

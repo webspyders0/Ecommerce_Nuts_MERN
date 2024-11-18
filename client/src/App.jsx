@@ -4,13 +4,18 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomeOutlet from './pages/customer/HomeOutlet';
 import LoginPage from './pages/customer/LoginPage';
 import RegisterPage from './pages/customer/RegisterPage';
-// import { TitleProvider } from './components/TitleContent';
 import HomePage from './pages/customer/LandingPage';
 import AboutPage from './pages/customer/AboutPage';
 import ContactPage from './pages/customer/ContactPage';
 import { NetworkStatusProvider } from './pages/network/NetworkStatusProvider';
 import NetworkAwareComponent from './pages/network/NetworkAwareComponent';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import OrdersPage from './pages/admin/OrderPage';
+import AdminProductsPage from './pages/admin/ProductPage';
+import AdminSettingsPage from './pages/admin/SettingsPage';
+import MaintenancePage from './pages/maintenance/MaintenancePage';
+import AdminCustomerPage from './pages/admin/CustomersPage';
+import ProductPage from './pages/customer/ProductsPage';
 
 // Define the router using createBrowserRouter
 const router = createBrowserRouter([
@@ -20,6 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        // element: <MaintenancePage />,
         element: <HomePage />,
       },
       {
@@ -35,12 +41,38 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
+        path: 'products',
+        element: <ProductPage />,
+      },
+      {
         path: 'contact-us',
         element: <ContactPage />,
       },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <HomeOutlet />,
+    children: [
       {
-        path: 'admin',
+        index: true,
         element: <AdminDashboard />,
+      },
+      {
+        path: 'orders',
+        element: <OrdersPage />,
+      },
+      {
+        path: 'products',
+        element: <AdminProductsPage />,
+      },
+      {
+        path: 'customers',
+        element: <AdminCustomerPage />,
+      },
+      {
+        path: 'settings',
+        element: <AdminSettingsPage />,
       },
     ],
   },

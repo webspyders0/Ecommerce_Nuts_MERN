@@ -31,7 +31,7 @@ export default function RegisterPage() {
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="block text-sm font-medium text-amber-800">Full Name</label>
                                     <div className="relative">
-                                        <input id="name" type="text" placeholder="John Doe" className="w-full px-3 py-2 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 pl-10" />
+                                        <input id="name" type="text" placeholder="Your Name" className="w-full px-3 py-2 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 pl-10" />
                                         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-400" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
@@ -40,7 +40,7 @@ export default function RegisterPage() {
                                 <div className="space-y-2">
                                     <label htmlFor="email" className="block text-sm font-medium text-amber-800">Email</label>
                                     <div className="relative">
-                                        <input id="email" type="email" placeholder="you@example.com" className="w-full px-3 py-2 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 pl-10" />
+                                        <input id="email" type="email" placeholder="you@gmail.com" className="w-full px-3 py-2 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 pl-10" />
                                         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-400" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>

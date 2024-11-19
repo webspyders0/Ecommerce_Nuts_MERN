@@ -16,6 +16,7 @@ import AdminSettingsPage from './pages/admin/SettingsPage';
 import MaintenancePage from './pages/maintenance/MaintenancePage';
 import AdminCustomerPage from './pages/admin/CustomersPage';
 import ProductPage from './pages/customer/ProductsPage';
+import ProductDetailPage from './pages/customer/ProductsDetailPage';
 
 // Define the router using createBrowserRouter
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'products',
         element: <ProductPage />,
+      },
+      {
+        path: 'products/details',
+        element: <ProductDetailPage />,
       },
       {
         path: 'contact-us',

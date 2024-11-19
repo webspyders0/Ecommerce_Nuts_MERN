@@ -8,6 +8,15 @@ import { ChevronRight, Search, ShoppingCart, Heart } from 'lucide-react'
 import Navbar from '../../components/Navbar';
 import backgroundImage from '../../assets/images/nutso3.png';
 import Footer from '../../components/Footer';
+import productImg from '../../assets/images/product.webp'
+
+import almondImg from '../../assets/images/almond.jpeg';
+import cashewImg from '../../assets/images/cashew.jpeg';
+import pistaImg from '../../assets/images/pista.jpeg';
+import walnutImg from '../../assets/images/walnut.jpeg';
+import amlaImg from '../../assets/images/amlahoney.jpeg';
+import strawImg from '../../assets/images/driedstraw.jpeg';
+import pineImg from '../../assets/images/driedpine.jpeg';
 
 export default function ProductPage() {
     const [priceRange, setPriceRange] = useState({ min: 0, max: 5900 });
@@ -33,47 +42,47 @@ export default function ProductPage() {
         {
             name: 'Medjoul Jordan Premium Dates',
             price: 475.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: almondImg
         },
         {
             name: 'Super Premium Figs Afghan Anjeer',
             price: 470.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: cashewImg
         },
         {
             name: 'Chile Walnut Without Shell Akhrot',
             price: 548.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: pistaImg
         },
         {
             name: 'Premium Iranian Pistachio No 1',
             price: 470.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: walnutImg
         },
         {
             name: 'Ajfan Dates Milkshake',
             price: 240.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: strawImg
         },
         {
             name: 'Breakfast Hearty Mix',
             price: 290.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: strawImg
         },
         {
             name: 'Pure Kashmiri Shilajit',
             price: 745.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: pineImg
         },
         {
             name: 'Haze Cream With Hazelnuts',
             price: 385.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: amlaImg
         },
         {
             name: 'Ajwa Seed Powder',
             price: 395.00,
-            image: '/placeholder.svg?height=300&width=300'
+            image: cashewImg
         },
     ]
 
@@ -106,10 +115,10 @@ export default function ProductPage() {
                 >
                     {/* Hero Banner */}
                     <div className="relative h-48 md:h-64 bg-cover bg-center" style={{
-                        backgroundImage: 'url("/placeholder.svg?height=400&width=1200")'
+                        backgroundImage: `url(${productImg})`
                     }}>
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                            <h1 className="text-4xl md:text-6xl font-bold text-white">ALL PRODUCTS</h1>
+                            <h1 className="text-4xl md:text-6xl font-semibold text-white">ALL PRODUCTS</h1>
                         </div>
                     </div>
 
@@ -153,32 +162,30 @@ export default function ProductPage() {
                                     <div className="mb-6">
                                         <h3 className="font-medium mb-3 text-amber-800">PRICE</h3>
                                         <div className="flex gap-4 items-center">
-                                            {/* Minimum Price Slider */}
                                             <input
                                                 type="range"
                                                 min="0"
                                                 max="5900"
-                                                step="100" // Step increment set to 100
+                                                step="100"
                                                 value={priceRange.min}
                                                 onChange={(e) =>
                                                     setPriceRange((prev) => ({
                                                         ...prev,
-                                                        min: Math.min(Number(e.target.value), priceRange.max - 100), // Prevent overlapping
+                                                        min: Math.min(Number(e.target.value), priceRange.max - 100),
                                                     }))
                                                 }
                                                 className="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer"
                                             />
-                                            {/* Maximum Price Slider */}
                                             <input
                                                 type="range"
                                                 min="0"
                                                 max="5900"
-                                                step="100" // Step increment set to 100
+                                                step="100"
                                                 value={priceRange.max}
                                                 onChange={(e) =>
                                                     setPriceRange((prev) => ({
                                                         ...prev,
-                                                        max: Math.max(Number(e.target.value), priceRange.min + 100), // Prevent overlapping
+                                                        max: Math.max(Number(e.target.value), priceRange.min + 100),
                                                     }))
                                                 }
                                                 className="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer"
@@ -188,8 +195,6 @@ export default function ProductPage() {
                                             Price: Rs. {priceRange.min} - Rs. {priceRange.max}
                                         </div>
                                     </div>
-
-
 
                                     {/* Product Types */}
                                     <div>
@@ -214,31 +219,32 @@ export default function ProductPage() {
 
                             {/* Products Grid */}
                             <div className="lg:w-3/4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {products.map((product, index) => (
-                                        <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                                            <div className="aspect-square relative">
+                                        <div
+                                            key={index}
+                                            className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-xl"
+                                        >
+                                            <div className="relative w-full pt-[75%] bg-gray-100 border-b-2 border-[#D4AF37]">
                                                 <img
                                                     src={product.image}
                                                     alt={product.name}
-                                                    className="object-cover w-full h-full"
+                                                    className="absolute top-0 left-0 w-full h-full object-cover transition-transform transform hover:scale-110"
                                                 />
                                             </div>
-                                            <div className="p-4">
-                                                <h3 className="text-amber-800 font-medium mb-2 hover:text-amber-600">
-                                                    <Link to="#">{product.name}</Link>
-                                                </h3>
-                                                <div className="flex items-center justify-between">
-                                                    <p className="text-amber-800 font-semibold">
+                                            <div className="flex flex-1 flex-col justify-between p-4 bg-[#FDF8E7] border-b-4 border-[#D4AF37]">
+                                                <h3 className="text-lg text-gray-700 mb-2">{product.name}</h3>
+                                                <div className="flex justify-between items-center">
+                                                    <p className="text-base font-semibold text-[#102C57]">
                                                         From Rs. {product.price.toFixed(2)}
                                                     </p>
-                                                    <button className="text-amber-600 hover:text-amber-800">
-                                                        <Heart className="h-5 w-5" />
+                                                    <button className="text-[#D4AF37] hover:text-[#102C57] transition-colors">
+                                                        <Heart className="h-6 w-6" />
                                                     </button>
                                                 </div>
                                             </div>
+                                            <div className="bg-[#D4AF37] h-2" />
                                         </div>
-
                                     ))}
                                 </div>
 
@@ -261,7 +267,10 @@ export default function ProductPage() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
+            
+
+            
                     {/* footer  */}
                     <Footer />
 

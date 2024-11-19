@@ -135,13 +135,13 @@ export default function Navbar() {
                                     <Search className="h-6 w-6" />
                                 </Link>
                             </button>
-
-                            <button className="text-black p-2 rounded">
-                                <Link to="/login">
-                                    <User className="h-6 w-6" />
-                                </Link>
-                            </button>
-
+                                {!isMenuOpen && (
+                                <button className="hidden md:block text-black p-2 rounded">
+                                    <Link to="/login">
+                                        <User className="h-6 w-6" />
+                                    </Link>
+                                </button>
+                                )}
                             <button className="text-black p-2 rounded relative">
                                 <Link to="/cart">
                                     <ShoppingCart className="h-6 w-6" />
@@ -150,8 +150,9 @@ export default function Navbar() {
                                     </span>
                                 </Link>
                             </button>
-
-                            <button className="text-black p-2 rounded relative">
+                            {!isMenuOpen && (
+                                <button className="hidden md:block text-black p-2 rounded relative">
+                     
                                 <Link to="/wishlist">
                                     <Heart className="h-6 w-6" />
                                     <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -159,7 +160,7 @@ export default function Navbar() {
                                     </span>
                                 </Link>
                             </button>
-
+                            )}
                             {/* Mobile Menu Button */}
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -181,6 +182,8 @@ export default function Navbar() {
                             <Link to="/deals" className={navLinkClass('/deals')}>BEST DEALS</Link>
                             <Link to="/giftings" className={navLinkClass('/giftings')}>GIFTINGS</Link>
                             <Link to="/contact-us" className={navLinkClass('/contact-us')}>CONTACT US</Link>
+                            <Link to="/login" className={navLinkClass('/login')}>LOGIN</Link>
+                            <Link to="/wishlist" className={navLinkClass('/wishlist')}>WISHLIST</Link>
                         </div>
                     </div>
                 )}

@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import backgroundImage from '../../assets/images/nutso3.png';
 import ChatWidget from '../../components/ChatWidget';
+import productImg from '../../assets/images/product.webp'
 
 export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -37,18 +38,14 @@ export default function ContactPage() {
 
             }}>
                 {/* Hero Section */}
-                <div className="relative h-[300px] md:h-[400px]">
-                    <img
-                        src="/placeholder.svg?height=400&width=1200"
-                        alt="Store Interior"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <h1 className="text-4xl md:text-6xl font-bold text-white animate-fade-in-down text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                            CONTACT US
-                        </h1>
+                    {/* Hero Section */}
+                    <div className="relative h-48 md:h-64 bg-cover bg-center" style={{
+                        backgroundImage: `url(${productImg})`
+                    }}>
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                            <h1 className="text-4xl md:text-6xl font-semibold text-white">CONTACT US</h1>
+                        </div>
                     </div>
-                </div>
 
                 {/* Breadcrumb */}
                 <div className="container mx-auto px-4 py-2">

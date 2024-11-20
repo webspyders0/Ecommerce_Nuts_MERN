@@ -79,7 +79,7 @@ export default function LoginPage() {
                         </svg>
                         Home
                     </Link>
-                    <Link to="/shop" className="text-amber-800 hover:text-amber-600 focus:outline-none transition duration-300">
+                    <Link to="/" className="text-amber-800 hover:text-amber-600 focus:outline-none transition duration-300">
                         Shop Now
                         <svg className="inline-block ml-2" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

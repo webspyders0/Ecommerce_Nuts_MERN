@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import backgroundImage from '../../assets/images/nutso3.png';
 import ChatWidget from '../../components/ChatWidget';
 import productImg from '../../assets/images/product.webp'
+import { Helmet } from 'react-helmet';
 
 export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -25,6 +26,9 @@ export default function ContactPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Contact - Your Favorite Items</title>
+            </Helmet>
             <div style={{ fontFamily: 'Arial, sans-serif', backgroundColor: '#FDF8E7', color: '#8B4513', minHeight: '100vh' }}>
             <div>
                 <Navbar />
@@ -67,7 +71,7 @@ export default function ContactPage() {
                                         { icon: "🕒", title: "CUSTOMER SERVICE", content: "Monday to Sunday 10:00 AM – 10:00 PM" },
                                         { icon: "📞", title: "PHONE", content: "+91 7034900009" },
                                         { icon: "✉️", title: "EMAIL", content: "customercare@nutty.in" },
-                                        { icon: "📍", title: "LOCATION", content: "Bommanahalli, Bengaluru, Karnataka 560068" },
+                                        { icon: "📍", title: "LOCATION", content: "Tamil Nadu - Karnataka - Kerala" },
                                     ].map((item, index) => (
                                         <div key={index} className="bg-amber-50/30 backdrop-blur-md rounded-lg shadow-md p-4 flex items-center gap-4 hover:bg-amber-50/40 transition-all">
                                             <div className="bg-amber-500 p-3 rounded-full text-2xl">{item.icon}</div>

@@ -24,7 +24,7 @@ export default function RegisterPage() {
                         <p className="text-amber-800 mt-1">Dry Fruits & Nuts Emporium</p>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div className="bg-white  shadow-lg overflow-hidden">
                         <div className="p-8">
                             <h2 className="text-2xl font-semibold text-center mb-6 text-amber-800">Create Account</h2>
                             <form className="space-y-4">
@@ -62,7 +62,7 @@ export default function RegisterPage() {
                         </div>
                     </div>
 
-                    <div className="px-8 py-4 bg-amber-100 text-center">
+                    <div className="px-8 py-4 bg-amber-100 text-center rounded-bl-lg rounded-br-lg">
                         <p className="text-sm text-amber-800">
                             Already have an account?
                             <Link to="/login" className="ml-1 font-semibold text-amber-600 hover:underline focus:outline-none">
@@ -70,6 +70,7 @@ export default function RegisterPage() {
                             </Link>
                         </p>
                     </div>
+
                 </div>
 
                 <div className="mt-8 text-center">
@@ -89,7 +90,7 @@ export default function RegisterPage() {
                     </svg>
                     Home
                 </Link>
-                <Link to="/shop" className="text-amber-800 hover:text-amber-600 focus:outline-none transition duration-300">
+                <Link to="/" className="text-amber-800 hover:text-amber-600 focus:outline-none transition duration-300">
                     Shop Now
                     <svg className="inline-block ml-2" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -76,3 +76,32 @@ html {
 ::-webkit-scrollbar-track {
     background: #f9f9f9;
 }
+
+/* General smooth scroll behavior for the whole app */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar Styling for Swiper */
+.swiper-container::-webkit-scrollbar {
+    height: 0.5rem; /* Specific height for Swiper's scrollbar */
+}
+
+.swiper-container::-webkit-scrollbar-thumb {
+    background: #d4af37; /* Golden color for thumb */
+    border-radius: 0.25rem; /* Slightly rounded edges */
+    transition: background-color 0.3s ease-in-out; /* Smooth color change */
+}
+
+.swiper-container::-webkit-scrollbar-thumb:hover {
+    background: #102c57; /* Dark blue hover color for thumb */
+}
+
+.swiper-container::-webkit-scrollbar-track {
+    background: #fdf8e7; /* Light background for the scrollbar track */
+}
+
+/* Optional animation for the thumb when scrolling */
+.swiper-container::-webkit-scrollbar-thumb:active {
+    background: #ffa559; /* Slightly brighter color on active scroll */
+}

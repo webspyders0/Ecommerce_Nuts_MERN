@@ -17,6 +17,8 @@ import MaintenancePage from './pages/maintenance/MaintenancePage';
 import AdminCustomerPage from './pages/admin/CustomersPage';
 import ProductPage from './pages/customer/ProductsPage';
 import ProductDetailPage from './pages/customer/ProductsDetailPage';
+import CartPage from './pages/customer/CartPage';
+import WishlistPage from './pages/customer/WishlistPage';
 
 // Define the router using createBrowserRouter
 const router = createBrowserRouter([
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
       {
         path: 'products',
         element: <ProductPage />,
+      },
+      {
+        path: 'cart',
+        element: <CartPage />,
+      },
+      {
+        path: 'wishlist',
+        element: <WishlistPage />,
       },
       {
         path: 'products/details',

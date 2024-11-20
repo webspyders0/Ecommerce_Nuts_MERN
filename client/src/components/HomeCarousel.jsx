@@ -42,7 +42,8 @@ export default function CreativeCarousel() {
             const timer = setInterval(nextSlide, 3000);
             return () => clearInterval(timer);
         }
-    }, [isPaused, nextSlide, currentSlide]);
+    }, [isPaused, nextSlide]);
+
 
     return (
         <>
